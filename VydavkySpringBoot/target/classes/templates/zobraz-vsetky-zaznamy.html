@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Zoznam výdavkov<</title>
+    <!-- <meta http-equiv="refresh" content="3;url=http://www.google.com/" /> -->
+</head>
+<body>
+<h1>Zoznam výdavkov</h1>
+<table border="1"> <!-- Poznamka v HTML - vytvorili sme tabulku -->
+    <thead> <!-- Hlavicka tabulky -->
+    <tr> <!-- vytvorili sme riadok, ZACIATOK riadka -->
+        <th>Popis výdavku</th> <!-- th reprezentuje bunku daneho riadka -->
+        <th>Cena výdavku</th> <!-- th reprezentuje bunku daneho riadka -->
+        <th>Kategória</th> <!-- th reprezentuje bunku daneho riadka -->
+        <th>Dátum</th> <!-- th reprezentuje bunku daneho riadka -->
+        <th>Poznámka</th>
+        <th>Akcie</th>
+    </tr> <!-- vytvorili sme riadok, KONIEC riadka -->
+    </thead> <!-- Koniec hlavicky tabulky -->
+    <tbody>
+    <tr th:each="vydavokObjekt:${vydavkyZoznam}"> <!-- foreach podobne ako v Jave, ale tu prostrednictvom thymeleaf -->
+        <td th:text="${vydavokObjekt.popis}"></td> <!-- popis je ten isty popis, ktory najdeme ako premennu (field) v triede, kt. reprezentuje model -->
+        <td th:text="${vydavokObjekt.cena}"></td> <!-- rovnako aj pre cena -->
+        <td th:text="${vydavokObjekt.kategoria}"></td> <!-- rovnako aj pre kategoria -->
+        <td th:text="${vydavokObjekt.datum}"></td> <!-- rovnako aj pre datum -->
+        <td th:text="${vydavokObjekt.poznamka}"></td>
+        <td>
+            <a th:href="@{/uprav-zaznam/{id}(id=${vydavokObjekt.id})}">Uprav záznam</a>
+            <a th:href="@{/vymaz-zaznam/{id}(id=${vydavokObjekt.id})}">Vymaž záznam</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<a href="/">Prejdi na hlavnú stránku</a>
+</body>
+</html>
